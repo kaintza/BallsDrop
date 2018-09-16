@@ -1,12 +1,36 @@
-var count = 1;
-var score = 0;
+let count = 1;
+let score = 0;
+
+function addBall () {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/getball');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    console.log("asd");
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var userInfo = JSON.parse(xhr.responseText);
+            var obj = JSON.parse(userInfo);
+            console.log(obj.color);
+            var color = obj.color;
+            draw(color);
+            fill_sum();
+            fill_score(color);
+            count++;
+        }
+    };
+    let obj = new Object();
+    obj.count = count;
+    let jsonString= JSON.stringify(obj);
+    //var count2 = {"count" : count};
+    xhr.send(jsonString);
+}
 
 function draw(color) {
 
-    var ul = document.getElementById("ball_container");
+    let ul = document.getElementById("ball_container");
 
-    var listItem = document.createElement("li");
-    var canvas = document.createElement("canvas");
+    let listItem = document.createElement("li");
+    let canvas = document.createElement("canvas");
     canvas.width = 200;
     canvas.height = 100;
     listItem.appendChild(canvas);
@@ -33,13 +57,13 @@ function draw(color) {
 }
 
 function fill_sum () {
-    var sum_p = document.getElementById("sum");
+    let sum_p = document.getElementById("sum");
     sum_p.textContent = "Sum:" + count;
 }
 
 function fill_score (color) {
     console.log(color);
-    var score_p = document.getElementById("score");
+    let score_p = document.getElementById("score");
     if (color === "pink")
         score += 1;
     else if (color ===  "purple")
@@ -52,27 +76,3 @@ function fill_score (color) {
         score_p.textContent = "Score:" + score;
 }
 
-function jajdoit () {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/getball');
-   xhr.setRequestHeader('Content-Type', 'application/json');
-    console.log("asd");
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            console.log(xhr.responseText);
-            var userInfo = JSON.parse(xhr.responseText);
-            var obj = JSON.parse(userInfo);
-            console.log(obj.color);
-            var color = obj.color;
-            draw(color);
-            fill_sum();
-            fill_score(color);
-            count++;
-        }
-    };
-    var obj = new Object();
-    obj.count = count;
-    var jsonString= JSON.stringify(obj);
-    //var count2 = {"count" : count};
-        xhr.send(jsonString);
-}

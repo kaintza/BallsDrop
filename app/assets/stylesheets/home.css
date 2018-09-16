@@ -1,4 +1,5 @@
-.main {
+.main
+{
     background-color: lightgray;
     position: absolute;
     width: 300px;
@@ -47,7 +48,8 @@
     margin: 0;
 }
 
-.button {
+.button
+{
     margin: 10px auto;
 }
 
@@ -56,7 +58,8 @@
     grid-column: 1 / 3;
 }
 
-.grid-container {
+.grid-container
+{
     z-index: 20;
     background-color: lightgray;
     position: relative;
