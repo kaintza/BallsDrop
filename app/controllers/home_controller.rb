@@ -10,7 +10,7 @@ class HomeController < ActionController::Base
     @ball = create_ball(count)
 
     respond_to do |format|
-      format.json { render json: @ball.to_json.to_json ,layout: false}
+      format.json { render json: @ball.to_json ,layout: false}
     end
   end
 end
