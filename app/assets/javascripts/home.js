@@ -54,7 +54,7 @@ function fill_score (color) {
 
 function jajdoit () {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3003/getball');
+    xhr.open('POST', '/getball');
    xhr.setRequestHeader('Content-Type', 'application/json');
     console.log("asd");
     xhr.onload = function () {
